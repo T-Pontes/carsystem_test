@@ -27,4 +27,8 @@ public class MarcaService {
 	public Marca insert(Marca obj) {
 		return repository.save(obj);
 	}
+	
+	public void delete(Integer id) {
+		repository.deleteById(id);
+	}
 }
