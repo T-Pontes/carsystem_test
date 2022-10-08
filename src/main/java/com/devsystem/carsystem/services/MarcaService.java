@@ -31,4 +31,14 @@ public class MarcaService {
 	public void delete(Integer id) {
 		repository.deleteById(id);
 	}
+	
+	public Marca update(Integer id, Marca obj) {
+		Marca entity = repository.getReferenceById(id);
+		updateData(entity, obj);
+		return repository.save(entity);
+	}
+
+	private void updateData(Marca entity, Marca obj) {
+		entity.setMarca(obj.getMarca());
+	}
 }
