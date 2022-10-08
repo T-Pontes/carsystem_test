@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.devsystem.carsystem.entities.Marca;
 import com.devsystem.carsystem.repositories.MarcaRepository;
+import com.devsystem.carsystem.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class MarcaService {
@@ -21,7 +22,7 @@ public class MarcaService {
 	
 	public Marca findById(Integer id) {
 		Optional<Marca> obj = repository.findById(id);
-		return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	public Marca insert(Marca obj) {
