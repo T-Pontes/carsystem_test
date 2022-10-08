@@ -3,6 +3,8 @@ package com.devsystem.carsystem.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -43,9 +45,13 @@ public class MarcaService {
 	}
 	
 	public Marca update(Integer id, Marca obj) {
-		Marca entity = repository.getReferenceById(id);
-		updateData(entity, obj);
-		return repository.save(entity);
+		try {
+			Marca entity = repository.getReferenceById(id);
+			updateData(entity, obj);
+			return repository.save(entity);
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
 	}
 
 	private void updateData(Marca entity, Marca obj) {
