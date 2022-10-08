@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.devsystem.carsystem.entities.enums.Tipo;
+
 @Entity
 public class Modelo implements Serializable{
 
@@ -21,6 +23,8 @@ public class Modelo implements Serializable{
 	private Integer anoFabricacao;
 	private Integer anoModelo;
 	
+	private Integer tipo;
+	
 	@ManyToOne
 	@JoinColumn(name="marca_id")
 	private Marca marca;
@@ -28,11 +32,12 @@ public class Modelo implements Serializable{
 	public Modelo() {
 	}
 	
-	public Modelo(Integer id, String modelo, Integer anoFabricacao, Integer anoModelo, Marca marca) {
+	public Modelo(Integer id, String modelo, Integer anoFabricacao, Integer anoModelo, Tipo tipo, Marca marca) {
 		this.id = id;
 		this.modelo = modelo;
 		this.anoFabricacao = anoFabricacao;
 		this.anoModelo = anoModelo;
+		setTipo(tipo);
 		this.marca = marca;
 	}
 
@@ -66,6 +71,14 @@ public class Modelo implements Serializable{
 
 	public void setAnoModelo(Integer anoModelo) {
 		this.anoModelo = anoModelo;
+	}
+
+	public Tipo getTipo() {
+		return Tipo.valueOf(tipo);
+	}
+
+	public void setTipo(Tipo tipo) {
+		if(tipo != null) this.tipo = tipo.getcode();
 	}
 
 	public Marca getMarca() {
