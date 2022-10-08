@@ -23,4 +23,8 @@ public class MarcaService {
 		Optional<Marca> obj = repository.findById(id);
 		return obj.get();
 	}
+	
+	public Marca insert(Marca obj) {
+		return repository.save(obj);
+	}
 }
