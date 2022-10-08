@@ -1,12 +1,17 @@
 package com.devsystem.carsystem.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Marca implements Serializable{
@@ -16,7 +21,9 @@ public class Marca implements Serializable{
 	private Integer id;
 	private String marca;
 	
-	//Associar com os modelos 
+	@JsonIgnore
+	@OneToMany(mappedBy = "marca")
+	private List<Modelo> modelos = new ArrayList<>();
 	
 	public Marca() {
 	}
@@ -40,6 +47,10 @@ public class Marca implements Serializable{
 
 	public void setMarca(String marca) {
 		this.marca = marca;
+	}
+
+	public List<Modelo> getModelos() {
+		return modelos;
 	}
 
 	@Override
