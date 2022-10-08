@@ -74,7 +74,7 @@ public class Modelo implements Serializable{
 	}
 
 	public Tipo getTipo() {
-		return Tipo.valueOf(tipo);
+		return Tipo.toEnum(tipo);
 	}
 
 	public void setTipo(Tipo tipo) {

@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.devsystem.carsystem.entities.Marca;
 import com.devsystem.carsystem.entities.Modelo;
 import com.devsystem.carsystem.entities.Usuario;
+import com.devsystem.carsystem.entities.enums.Perfil;
 import com.devsystem.carsystem.entities.enums.Tipo;
 import com.devsystem.carsystem.repositories.MarcaRepository;
 import com.devsystem.carsystem.repositories.ModeloRepository;
@@ -33,6 +34,7 @@ public class TestConfig implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		Usuario u1 = new Usuario(null, "Tiago Pontes", "00797", pe.encode("123"));
+		u1.addPerfil(Perfil.ADMIN);
 		Usuario u2 = new Usuario(null, "Arthur Pontes", "01000", pe.encode("321"));
 		
 		Marca mc1 = new Marca(null, "Volkswagen");

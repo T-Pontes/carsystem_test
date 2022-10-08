@@ -1,13 +1,13 @@
 package com.devsystem.carsystem.entities.enums;
 
-public enum Tipo {
+public enum Perfil {
 
-	NACIONAL(1, "Nacional"),
-	IMPORTADO(2, "Importado");
+	ADMIN(1, "ROLE_ADMIN"),
+	CLIENTE(2, "ROLE_CLIENTE");
 
 	private int code;
 	
-	private Tipo(Integer code, String tipo) {
+	private Perfil(Integer code, String perfil) {
 		this.code = code;
 	}
 	
@@ -15,11 +15,11 @@ public enum Tipo {
 		return code;
 	}
 	
-	public static Tipo toEnum(Integer code) {
+	public static Perfil toEnum(Integer code) {
 		if(code == null) {
 			return null;
 		} else {
-			for(Tipo value: Tipo.values()) {
+			for(Perfil value: Perfil.values()) {
 				if(value.getcode() == code) {
 					return value;
 				}
